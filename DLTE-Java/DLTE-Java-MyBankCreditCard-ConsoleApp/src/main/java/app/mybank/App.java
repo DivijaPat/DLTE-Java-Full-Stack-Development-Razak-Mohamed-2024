@@ -5,8 +5,8 @@ import app.mybank.entity.Transaction;
 import app.mybank.exceptions.CreditCardException;
 import app.mybank.exceptions.MyBankJarvisException;
 import app.mybank.exceptions.TransactionException;
-import app.mybank.middleware.CreditCardDatabaseRepository;
-import app.mybank.middleware.DatabaseTarget;
+//import app.mybank.middleware.CreditCardDatabaseRepository;
+//import app.mybank.middleware.DatabaseTarget;
 import app.mybank.middleware.FileStorageTarget;
 import app.mybank.remotes.StorageTarget;
 import app.mybank.services.CreditCardServices;
@@ -111,6 +111,23 @@ public class App
                         }
                         catch (CreditCardException creditCardException){
                             System.out.println(creditCardException);
+                        }
+                        break;
+                    case 6:
+                        System.out.println("Enter date");
+                        Date date=new Date(scanner.next());
+                        try{
+                            System.out.println(transactionService.callFindAllByDate(date));
+                        }catch (TransactionException transactionException){
+                            System.out.println(transactionException);
+                        }
+                        break;
+                    case 7:
+                        System.out.println("Find Merchant By given ID");
+                        try{
+                            System.out.println(transactionService.callFindMerchantByID(scanner.nextInt()));
+                        }catch (TransactionException transactionException){
+                            System.out.println(transactionException);
                         }
                         break;
                     default:return;
